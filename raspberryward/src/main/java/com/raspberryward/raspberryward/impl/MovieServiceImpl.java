@@ -66,9 +66,7 @@ public class MovieServiceImpl implements MovieService {
         List<AwardDto> awardDtos = new ArrayList<>();
 
         for (Movie value : setMovie) {
-            int sizeProducers = (int) movies.stream().filter(it -> it.getProducers().equals(value.getProducers())).count();
-            if (sizeProducers > 1)
-                producersRepeat.add(value);
+            producersRepeat.add(value);
         }
 
         for (Movie list1 : producersRepeat) {
@@ -77,7 +75,7 @@ public class MovieServiceImpl implements MovieService {
             for (Movie list2 : producersRepeat) {
                 Integer yearList2 = Integer.parseInt(list2.getYear());
                 Integer result = yearList1 - yearList2;
-                if (list1.getProducers().equals(list2.getProducers())) {
+                if (list1.getProducers().contains(list2.getProducers())) {
                     if (result > 0) {
                         awardDto.setInterval(result);
                         awardDto.setProducer(list2.getProducers());
